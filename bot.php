@@ -97,6 +97,7 @@ if (!is_null($events['events'])) {
                                     'type' => 'text',
                                     'text' => $text
                                 ];
+                                break;
                             default:
                                 $text = "รายการ " . $temp[1] . " ยังไม่มีบริการ";
                                 $msg = [
