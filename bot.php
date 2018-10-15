@@ -4,6 +4,8 @@ $access_token = 'Mt12Kqh7r34Z1+7GWu1xjfrRuTp9CT1a7yEAuR3L44D3Y3KcF/3+A/jOdnAnksK
 
 // Get POST body content
 $content = file_get_contents('php://input');
+$msg = file_get_contents("http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/linebot");
+$post = $msg;
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
@@ -89,6 +91,12 @@ if (!is_null($events['events'])) {
                                     'text' => $text
                                 ];
                                 break;
+                            case "kpi":
+                            $text = $post;
+                            $msg = [
+                                    'type' => 'text',
+                                    'text' => $text
+                                ];
                             default:
                                 $text = "รายการ " . $temp[1] . " ยังไม่มีบริการ";
                                 $msg = [
