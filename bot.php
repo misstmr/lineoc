@@ -163,13 +163,7 @@ $messages = $msgData;
                                     'text' => $text
                                 ];
                                 break;
-                            case "kpi":
-                                $text = $post;
-                                $msg = [
-                                    'type' => 'text',
-                                    'text' => $text
-                                ];
-                                break;
+                            
                             default:
                                 $text = "รายการ " . $temp[1] . " ยังไม่มีบริการ";
                                 $msg = [
