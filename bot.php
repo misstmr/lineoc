@@ -247,6 +247,7 @@ $messages = $msgData;
         }
     }
 }
+print_r($alert);
 foreach ($alert as  $temp) {
     foreach ($temp as $row) {
         # code...
