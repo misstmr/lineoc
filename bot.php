@@ -259,5 +259,6 @@ $running = null;
         }
     }
 }
+print_r($alert);
 echo "OK";
 ?>
