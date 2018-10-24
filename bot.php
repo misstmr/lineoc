@@ -249,15 +249,12 @@ $messages = $msgData;
 }
 print_r($alert);
 foreach ($alert as  $temp) {
-    print_r($temp);
-    echo $temp->kpi_name;
-    foreach ($temp as $row) {
         # code...
     
                                                            # code...
                            
-$msgData =  '[-->RED!]'.$row['kpi_id'].'-'.$row['kpi_name'].'( '.$row['kpi_value'].' '.' Target '.$row['cc'].$row['Target2'].')';
+$msgData =  '[-->RED!]'.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
 echo $msgData.'<br>';
-}}
+}
 echo "OK";
 ?>
