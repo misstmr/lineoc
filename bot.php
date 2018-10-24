@@ -23,7 +23,7 @@ if (!is_null($events['events'])) {
             } else {
                 $replyToken = $event['source']['groupId'];
             }
-            if ($event['message']['text'] == 'id' || $event['message']['text'] == 'Id') {
+            if ($event['message']['text'] == 'uid' || $event['message']['text'] == 'Uid') {
                 $msg = [
                     'type' => 'text',
                     'text' => $replyToken
@@ -155,9 +155,48 @@ if (!is_null($events['events'])) {
                     echo $result . "\r\n";
                 } else {
                     $text = 'ยังไม่มีบริการในรายการนี้ ช่วยเหลือพิมพ์ "mis:?"';
+                    
+                    $messages = $text;
+                    $url = 'https://api.line.me/v2/bot/message/push';
+                    $data = [
+                        'to' => $replyToken,
+                        'messages' => [$messages],
+                    ];
+                    $post = json_encode($data);
+                    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+
+                    echo $result . "\r\n";
                 }
             } else {
                 $text = 'ยังไม่มีบริการในรายการนี้ ช่วยเหลือพิมพ์ "mis:?"';
+                $messages = $text;
+                $url = 'https://api.line.me/v2/bot/message/push';
+                $data = [
+                    'to' => $replyToken,
+                    'messages' => [$messages],
+                ];
+                $post = json_encode($data);
+                $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                $ch = curl_init($url);
+                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                $result = curl_exec($ch);
+                curl_close($ch);
+
+                echo $result . "\r\n";
             }
         }
     }
