@@ -23,6 +23,12 @@ if (!is_null($events['events'])) {
             } else {
                 $replyToken = $event['source']['groupId'];
             }
+            if ($event['message']['text'] == 'id' || $event['message']['text'] == 'Id') {
+                $msg = [
+                    'type' => 'text',
+                    'text' => $replyToken
+                ];
+            }
 
             $temp = explode(':', $event['message']['text']);
             $num = count($temp);
@@ -92,8 +98,8 @@ if (!is_null($events['events'])) {
                                 ];
                                 break;
                             case "kpi":
-                            $text = $post;
-                            $msg = [
+                                $text = $post;
+                                $msg = [
                                     'type' => 'text',
                                     'text' => $text
                                 ];
@@ -112,8 +118,8 @@ if (!is_null($events['events'])) {
                             'text' => $text
                         ];
                     }
-                    if($temp[0] == 'id'){
-$msg = [
+                    if ($temp[0] == 'id') {
+                        $msg = [
                             'type' => 'text',
                             'text' => $replyToken
                         ];
