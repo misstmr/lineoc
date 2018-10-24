@@ -250,7 +250,7 @@ $messages = $msgData;
 print_r($alert);
 foreach ($alert as  $temp) {
     print_r($temp);
-    echo $tmep->kpi_name;
+    echo $temp->kpi_name;
     foreach ($temp as $row) {
         # code...
     
