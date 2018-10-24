@@ -254,7 +254,7 @@ foreach ($alert as  $temp) {
     
                                                            # code...
                            
-$msgData =  '[-->RED!]'.$row['kpi_id'].'-'.$row['kpi_name'].'( '.$row['kpi_value'].' '.' Target '.$row['cc'].$row['Target2'].')';
+$msgData =  '[-->RED!]'.$row=>kpi_id.'-'.$row=>kpi_name.'( '.$row['kpi_value'].' '.' Target '.$row['cc'].$row['Target2'].')';
 echo $msgData.'<br>';
 }}
 echo "OK";
