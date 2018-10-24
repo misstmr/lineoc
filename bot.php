@@ -39,12 +39,11 @@ if (!is_null($events['events'])) {
                         switch ($temp[1]) {
                             case "kpi":
                                 # code...
-                            $url = 'https://api.line.me/v2/bot/message/push';
-$headers=array('Content-Type: application/json','Authorization: Bearer '.$access_token);
+                          
                            //  $ch = array();
  
                             //$mh = curl_multi_init();
-                            $i=0;
+                         /*   $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
 $msgData =  '-->RED! '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
@@ -70,7 +69,7 @@ curl_setopt($ch[$i], CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post);
 curl_multi_add_handle($mh, $ch[$i]); */
-}
+ //} 
 /*
 $running = null;
   do {
@@ -83,7 +82,7 @@ $running = null;
   }
  
   curl_multi_close($mh); */
-$messages = $msgData;
+$messages = "kpissss";
                     $url = 'https://api.line.me/v2/bot/message/push';
                     $data = [
                         'to' => $replyToken,
