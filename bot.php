@@ -41,9 +41,9 @@ if (!is_null($events['events'])) {
                                 # code...
                             $url = 'https://api.line.me/v2/bot/message/push';
 $headers=array('Content-Type: application/json','Authorization: Bearer '.$access_token);
-                             $ch = array();
+                           //  $ch = array();
  
-                            $mh = curl_multi_init();
+                            //$mh = curl_multi_init();
                             $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
@@ -60,7 +60,7 @@ $post = '{
   }]
 
 }';
-$ch[$i] = curl_init($url);
+/*$ch[$i] = curl_init($url);
 
 curl_setopt($ch[$i],CURLOPT_HTTPHEADER,$headers);
 
@@ -71,7 +71,7 @@ curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post);
 curl_multi_add_handle($mh, $ch[$i]); */
 }
-
+/*
 $running = null;
   do {
     curl_multi_exec($mh, $running);
@@ -82,8 +82,8 @@ $running = null;
     curl_multi_remove_handle($mh, $c);
   }
  
-  curl_multi_close($mh); 
-/*$messages = $msgData;
+  curl_multi_close($mh); */
+$messages = $msgData;
                     $url = 'https://api.line.me/v2/bot/message/push';
                     $data = [
                         'to' => $replyToken,
@@ -99,7 +99,7 @@ $running = null;
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
                     $result = curl_exec($ch);
-                    curl_close($ch);*/
+                    curl_close($ch);
                             exit();
                                 break;
                             case "worktime":
