@@ -43,13 +43,10 @@ if (!is_null($events['events'])) {
  
                             $mh = curl_multi_init();
                             $i=0;
-                           foreach ($alert as  $row) {
+                           foreach ($alert as  $temp) {
                             $i++;
-                               # code...
-                           
-$msgData =  '[-->RED!]'.$row['kpi_id'].'-'.$row['kpi_name'].'( '.$row['kpi_value'].' '.' Target '.$row['cc'].$row['Target2'].')';
-
-
+$msgData =  '[-->RED!]'.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
+        
 
 $post = '{
   "to" : '.$replyToken.',
@@ -61,25 +58,33 @@ $post = '{
   }]
 
 }';
+curl_setopt($ch[$i],CURLOPT_HTTPHEADER,$headers);
 
+curl_setopt($ch[$i], CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+
+// The username and password
+
+curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post);
+//curl_setopt($ch[$i], CURLOPT_POSTFIELDS, "stickerPackageId=1");
+
+//curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post2);
+// Perform the request, and save content to $result
+curl_multi_add_handle($mh, $ch[$i]);
 }
-$messages = $msgData;
-                $url = 'https://api.line.me/v2/bot/message/push';
-                $data = [
-                    'to' => $replyToken,
-                    'messages' => [$messages],
-                ];
-                $post = json_encode($data);
-                $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+$running = null;
+  do {
+    curl_multi_exec($mh, $running);
+  } while($running > 0);
 
-                $ch = curl_init($url);
-                curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
-                curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-                curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
-                curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
-                curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
-                $result = curl_exec($ch);
-                curl_close($ch);
+   foreach($ch as $id => $c) {
+    $result[$id] = curl_multi_getcontent($c);
+    curl_multi_remove_handle($mh, $c);
+  }
+ 
+  // all done
+  curl_multi_close($mh);
+
                             exit();
                                 break;
                             case "worktime":
