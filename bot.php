@@ -39,6 +39,8 @@ if (!is_null($events['events'])) {
                         switch ($temp[1]) {
                             case "kpi":
                                 # code...
+                            $url = 'https://api.line.me/v2/bot/message/push';
+$headers=array('Content-Type: application/json','Authorization: Bearer '.$access_token);
                              $ch = array();
  
                             $mh = curl_multi_init();
@@ -58,20 +60,18 @@ $post = '{
   }]
 
 }';
+$ch[$i] = curl_init($url);
+
 curl_setopt($ch[$i],CURLOPT_HTTPHEADER,$headers);
 
 curl_setopt($ch[$i], CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
-// The username and password
 
 curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post);
-//curl_setopt($ch[$i], CURLOPT_POSTFIELDS, "stickerPackageId=1");
-
-//curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post2);
-// Perform the request, and save content to $result
-curl_multi_add_handle($mh, $ch[$i]);
+curl_multi_add_handle($mh, $ch[$i]); */
 }
+
 $running = null;
   do {
     curl_multi_exec($mh, $running);
@@ -82,9 +82,24 @@ $running = null;
     curl_multi_remove_handle($mh, $c);
   }
  
-  // all done
-  curl_multi_close($mh);
+  curl_multi_close($mh); 
+/*$messages = $msgData;
+                    $url = 'https://api.line.me/v2/bot/message/push';
+                    $data = [
+                        'to' => $replyToken,
+                        'messages' => [$messages],
+                    ];
+                    $post = json_encode($data);
+                    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                    $result = curl_exec($ch);
+                    curl_close($ch);*/
                             exit();
                                 break;
                             case "worktime":
