@@ -40,9 +40,9 @@ if (!is_null($events['events'])) {
                             case "kpi":
                                 # code...
                           
-                           //  $ch = array();
+                             $ch = array();
  
-                            //$mh = curl_multi_init();
+                            $mh = curl_multi_init();
                            $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
@@ -59,7 +59,19 @@ $post = '{
   }]
 
 }';
-/*$ch[$i] = curl_init($url);
+$msg = [
+                            'type' => 'text',
+                            'text' => $msgData
+                        ];
+
+ $data = [
+                        'to' => $replyToken,
+                        'messages' => [$messages],
+                    ];
+ $url = 'https://api.line.me/v2/bot/message/push';
+$post = json_encode($data);
+$headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+$ch[$i] = curl_init($url);
 
 curl_setopt($ch[$i],CURLOPT_HTTPHEADER,$headers);
 
@@ -68,9 +80,9 @@ curl_setopt($ch[$i], CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
 curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post);
-curl_multi_add_handle($mh, $ch[$i]); */
+curl_multi_add_handle($mh, $ch[$i]); 
  } 
-/*
+
 $running = null;
   do {
     curl_multi_exec($mh, $running);
@@ -81,8 +93,8 @@ $running = null;
     curl_multi_remove_handle($mh, $c);
   }
  
-  curl_multi_close($mh); */
-  $msg = [
+  curl_multi_close($mh); 
+ /* $msg = [
                             'type' => 'text',
                             'text' => $msgData
                         ];
@@ -102,7 +114,7 @@ $messages = $msg;
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
                     $result = curl_exec($ch);
-                    curl_close($ch);
+                    curl_close($ch);*/
                             exit();
                                 break;
                             case "worktime":
