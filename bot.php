@@ -4,8 +4,9 @@ $access_token = '3M3A8xgEnLxeefxn1EApcQtWe3DJyVRF/hFpoAz5jT+mxXBMPA8C8Wbd1383Epx
 
 // Get POST body content
 $content = file_get_contents('php://input');
-$msg = file_get_contents("http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/linebot");
-$post = $msg;
+$msg = file_get_contents("http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/sendalert");
+$alert = json_decode($msg);
+
 // Parse JSON
 $events = json_decode($content, true);
 // Validate parsed JSON data
@@ -33,9 +34,66 @@ if (!is_null($events['events'])) {
             $temp = explode(':', $event['message']['text']);
             $num = count($temp);
             if ($num >= 1) {
-                if ($temp[0] == 'mis' || $temp[0] == 'Mis') {
+                if ($temp[0] == 'mis' || $temp[0] == 'Mis' || $temp[0] == 'oc' || $temp[0] == 'Oc') {
                     if ($num >= 2) {
                         switch ($temp[1]) {
+                            case 'kpi':
+                                # code...
+                             $ch = array();
+ 
+                            $mh = curl_multi_init();
+                           foreach ($alert as  $row) {
+                               # code...
+                           
+$msgData =  '[-->RED!]'.$row['kpi_id'].'-'.$row['kpi_name'].'( '.$row['kpi_value'].' '.' Target '.$row['cc'].$row['Target2'].')';
+
+$url = 'https://api.line.me/v2/bot/message/push';
+$headers=array('Content-Type: application/json','Authorization: Bearer '.$access_token);
+$ch[$i] = curl_init($url);
+
+
+$post = '{
+  "to" : '.$replyToken.',
+  "messages" :[{
+  
+      "type": "text",
+      "text": "'.$msgData.'"
+      
+  }]
+
+}';
+
+curl_setopt($ch[$i], CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
+
+curl_setopt($ch[$i],CURLOPT_HTTPHEADER,$headers);
+
+curl_setopt($ch[$i], CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
+
+// The username and password
+
+curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
+curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post);
+                    curl_setopt($ch[$i], CURLOPT_FOLLOWLOCATION, 1);
+
+curl_multi_add_handle($mh, $ch[$i]);
+
+}
+
+$running = null;
+  do {
+    curl_multi_exec($mh, $running);
+  } while($running > 0);
+
+   foreach($ch as $id => $c) {
+    $result[$id] = curl_multi_getcontent($c);
+    curl_multi_remove_handle($mh, $c);
+  }
+ 
+  // all done
+  curl_multi_close($mh);
+                            exit();
+                                break;
                             case "worktime":
                                 if ($temp[2] == "it") {
                                     $msg = [
