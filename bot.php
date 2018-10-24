@@ -66,9 +66,6 @@ $post = '{
 
 }';
 
-curl_setopt($ch[$i], CURLOPT_CUSTOMREQUEST, "POST");
-                    curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
-
 curl_setopt($ch[$i],CURLOPT_HTTPHEADER,$headers);
 
 curl_setopt($ch[$i], CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
@@ -77,8 +74,10 @@ curl_setopt($ch[$i], CURLOPT_HTTPAUTH, CURLAUTH_BASIC);
 
 curl_setopt($ch[$i], CURLOPT_RETURNTRANSFER, true);
 curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post);
-                    curl_setopt($ch[$i], CURLOPT_FOLLOWLOCATION, 1);
+//curl_setopt($ch[$i], CURLOPT_POSTFIELDS, "stickerPackageId=1");
 
+//curl_setopt($ch[$i], CURLOPT_POSTFIELDS, $post2);
+// Perform the request, and save content to $result
 curl_multi_add_handle($mh, $ch[$i]);
 
 }
