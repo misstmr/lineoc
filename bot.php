@@ -112,6 +112,12 @@ if (!is_null($events['events'])) {
                             'text' => $text
                         ];
                     }
+                    if($temp[0] == 'id'){
+$msg = [
+                            'type' => 'text',
+                            'text' => $replyToken
+                        ];
+                    }
 
                     // Get replyToken
                     //  $replyToken = $event['source']['userId'];
