@@ -34,7 +34,7 @@ if (!is_null($events['events'])) {
             $temp = explode(':', $event['message']['text']);
             $num = count($temp);
             if ($num >= 1) {
-                if ($temp[0] == 'mis' || $temp[0] == 'Mis' || $temp[0] == 'oc' || $temp[0] == 'Oc') {
+                if ($temp[0] == 'mis' || $temp[0] == 'Mis' || $temp[0] == 'oc' || $temp[0] == 'OC') {
                     if ($num >= 2) {
                         switch ($temp[1]) {
                             case 'kpi':
@@ -42,12 +42,15 @@ if (!is_null($events['events'])) {
                              $ch = array();
  
                             $mh = curl_multi_init();
+                            $i=0;
                            foreach ($alert as  $row) {
+                            $i++;
                                # code...
                            
 $msgData =  '[-->RED!]'.$row['kpi_id'].'-'.$row['kpi_name'].'( '.$row['kpi_value'].' '.' Target '.$row['cc'].$row['Target2'].')';
 
 $url = 'https://api.line.me/v2/bot/message/push';
+
 $headers=array('Content-Type: application/json','Authorization: Bearer '.$access_token);
 $ch[$i] = curl_init($url);
 
