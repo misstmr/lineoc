@@ -37,7 +37,7 @@ if (!is_null($events['events'])) {
                 if ($temp[0] == 'mis' || $temp[0] == 'Mis' || $temp[0] == 'oc' || $temp[0] == 'OC') {
                     if ($num >= 2) {
                         switch ($temp[1]) {
-                            case 'kpi':
+                            case "kpi":
                                 # code...
                              $ch = array();
  
