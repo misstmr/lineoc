@@ -82,7 +82,11 @@ $running = null;
   }
  
   curl_multi_close($mh); */
-$messages = "kpissss";
+  $msg = [
+                            'type' => 'text',
+                            'text' => 'xxxxxx'
+                        ];
+$messages = $msg;
                     $url = 'https://api.line.me/v2/bot/message/push';
                     $data = [
                         'to' => $replyToken,
