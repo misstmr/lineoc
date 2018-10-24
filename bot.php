@@ -47,7 +47,7 @@ $headers=array('Content-Type: application/json','Authorization: Bearer '.$access
                             $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
-$msgData =  '[-->RED!]'.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
+$msgData =  '-->RED! '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
         
 
 $post = '{
