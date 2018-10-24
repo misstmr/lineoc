@@ -40,9 +40,7 @@ if (!is_null($events['events'])) {
                             case "kpi":
                                 # code...
                           
-                             $ch = array();
- 
-                            $mh = curl_multi_init();
+                           
                            $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
@@ -68,7 +66,7 @@ $msg = [
                         'to' => $replyToken,
                         'messages' => [$messages],
                     ];
- $url = 'https://api.line.me/v2/bot/message/push';
+ /*$url = 'https://api.line.me/v2/bot/message/push';
 $post = json_encode($data);
 $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
 $ch[$i] = curl_init($url);
@@ -95,8 +93,8 @@ $running = null;
     curl_multi_remove_handle($mh, $c);
   }
  
-  curl_multi_close($mh); 
- /* $msg = [
+  curl_multi_close($mh);  */
+ $msg = [
                             'type' => 'text',
                             'text' => $msgData
                         ];
@@ -116,7 +114,8 @@ $messages = $msg;
                     curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
                     curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
                     $result = curl_exec($ch);
-                    curl_close($ch);*/
+                    curl_close($ch); 
+                }
                             exit();
                                 break;
                             case "worktime":
