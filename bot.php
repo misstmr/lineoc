@@ -31,6 +31,62 @@ if (!is_null($events['events'])) {
                 ];
             }
 
+            $kpi = $event['message']['text'];
+            $num = count($temp);
+            if ($num >= 1) {
+                if($kpi=='kpi' || $kpi == 'Kpi'){
+
+                           $i=0;
+                           foreach ($alert as  $temp) {
+                            $i++;
+$msgData =  '-->RED! '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
+        
+
+$post = '{
+  "to" : '.$replyToken.',
+  "messages" :[{
+  
+      "type": "text",
+      "text": "'.$msgData.'"
+      
+  }]
+
+}';
+$msg = [
+                            'type' => 'text',
+                            'text' => $msgData
+                        ];
+
+ $data = [
+                        'to' => $replyToken,
+                        'messages' => [$messages],
+                    ];
+ 
+ $msg = [
+                            'type' => 'text',
+                            'text' => $msgData
+                        ];
+$messages = $msg;
+                    $url = 'https://api.line.me/v2/bot/message/push';
+                    $data = [
+                        'to' => $replyToken,
+                        'messages' => [$messages],
+                    ];
+                    $post = json_encode($data);
+                    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                    $result = curl_exec($ch);
+                    curl_close($ch); 
+                }
+                            exit();
+                }
+            }
             $temp = explode(':', $event['message']['text']);
             $num = count($temp);
             if ($num >= 1) {
