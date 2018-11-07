@@ -32,7 +32,7 @@ if (!is_null($events['events'])) {
             }
 
             $kpi = $event['message']['text'];
-            $num = count($temp);
+            $num = count($kpi);
             if ($num >= 1) {
                 if($kpi=='kpi' || $kpi == 'Kpi'){
 
