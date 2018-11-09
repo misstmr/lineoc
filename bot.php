@@ -39,7 +39,7 @@ if (!is_null($events['events'])) {
                            $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
-$msgData =  '-->RED! '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
+$msgData =  '-->RED! '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
         
 
 $post = '{
@@ -100,7 +100,7 @@ $messages = $msg;
                            $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
-$msgData =  '-->RED! '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
+$msgData =  '-->RED! '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
         
 
 $post = '{
@@ -339,7 +339,7 @@ foreach ($alert as  $temp) {
     
                                                            # code...
                            
-$msgData =  '[-->RED!]'.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target '.$temp->cc.$temp->Target2.')';
+$msgData =  '[-->RED!]'.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
 echo $msgData.'<br>';
 }
 echo "OK";
