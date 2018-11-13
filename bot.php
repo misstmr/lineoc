@@ -39,7 +39,10 @@ if (!is_null($events['events'])) {
                            $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
-$msgData =  '-->RED! 0x100051'.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
+$code = '100051';
+$bin = hex2bin(str_repeat('0', 8 - strlen($code)) . $code);
+$emoticon =  mb_convert_encoding($bin, 'UTF-8', 'UTF-32BE');
+$msgData =  '-->RED! '.$emoticon.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
         
 
 $post = '{
