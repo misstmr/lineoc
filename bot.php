@@ -39,7 +39,7 @@ if (!is_null($events['events'])) {
                            $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
-$code = '\xF0\x9F\x98\xA1';
+$code = '\xF0\x9F\x98\xA1 ';
 $msgData =  '-->RED! '.$code.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
         
 
