@@ -40,7 +40,7 @@ if (!is_null($events['events'])) {
                            foreach ($alert as  $temp) {
                             $i++;
 $code = '\xF0\x9F\x98\xA1 ';
-$utf8Byte = '\xF0\x9F\x98\x81';
+$utf8Byte = '\xF0\x9F\x94\xB4';
 
 $pattern = '@\\\x([0-9a-fA-F]{2})@x';
 $emoji = preg_replace_callback(
@@ -50,7 +50,7 @@ $emoji = preg_replace_callback(
   },
   $utf8Byte
 );
-$msgData =  '-->RED! '.$emoji.' '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
+$msgData =  ''.$emoji.' '.$temp->kpi_id.'-'.$temp->kpi_name.'( '.$temp->kpi_value.' '.' Target='.$temp->Target2.')';
         
 
 $post = '{
