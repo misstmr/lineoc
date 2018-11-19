@@ -36,6 +36,19 @@ if (!is_null($events['events'])) {
             if ($num >= 1) {
                 if($kpi=='kpi' || $kpi == 'Kpi'){
 
+              $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/put_line_uid';
+            $ch = curl_init($url);
+            $data = array(
+                'uid' => $replyToken
+            );
+            $payload = json_encode($data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($ch);
+            $temp = json_decode($result);
+            curl_close($ch);
+
                            $i=0;
                            foreach ($alert as  $temp) {
                             $i++;
