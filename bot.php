@@ -24,6 +24,25 @@ if (!is_null($events['events'])) {
             } else {
                 $replyToken = $event['source']['groupId'];
             }
+            
+            $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/put_line_log';
+            $ch = curl_init($url);
+            $data = array(
+                'uid' => $replyToken,
+                'log' => $event['message']['text']
+            );
+            $payload = json_encode($data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($ch);
+            $temp = json_decode($result);
+            curl_close($ch);
+
+
+
+
+
             if ($event['message']['text'] == 'uid' || $event['message']['text'] == 'Uid') {
                 $msg = [
                     'type' => 'text',
