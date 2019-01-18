@@ -48,7 +48,7 @@ if (!is_null($events['events'])) {
             if ($login[0] == 'A' || $login[0] == 'a') {
                  $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/line_authentication';
             $ch = curl_init($url);
-            $data = array(
+           $data = array(
                 'uid' => $replyToken,
                 'username' => $login[1],
                 'password' => $login[2]
@@ -62,10 +62,14 @@ if (!is_null($events['events'])) {
             curl_close($ch);
 
             $messages = 'authen';
+            $msg = [
+                            'type' => 'text',
+                            'text' => $messages
+                        ];
              $url = 'https://api.line.me/v2/bot/message/push';
                     $data = [
                         'to' => $replyToken,
-                        'messages' => [$messages],
+                        'messages' => [$msg],
                     ];
                     $post = json_encode($data);
                     $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
