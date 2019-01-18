@@ -46,7 +46,7 @@ if (!is_null($events['events'])) {
             if ($num >= 1) {
 
             if ($login[0] == 'A' || $login[0] == 'a') {
-                 $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/line_authentication';
+                 $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/put_line_authentication';
             $ch = curl_init($url);
            $data = array(
                 'uid' => $replyToken,
