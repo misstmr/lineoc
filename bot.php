@@ -61,20 +61,17 @@ if (!is_null($events['events'])) {
             $temp = json_decode($result);
             curl_close($ch);
 
-            $msg = 'Authentication'.'\n'. $temp->name .'\n'.$temp->message;
-           
-                    $post = '{
-  "to" : ["'.$replyToken.'"],
-  "messages" :[{
-  
-      "type": "text",
-      "text": "'.$msg.'"
-      
-  }]
-
-}';
-
-                  
+            $messages = 'Authentication '.'\n'. $temp->name .'\n'.$temp->message;
+            $msg = [
+                            'type' => 'text',
+                            'text' => $messages
+                        ];
+             
+                    $data = [
+                        'to' => $replyToken,
+                        'messages' => [$msg],
+                    ];
+                    $post = json_encode($data);
                     $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
                     $url = 'https://api.line.me/v2/bot/message/push';
                     $ch = curl_init($url);
