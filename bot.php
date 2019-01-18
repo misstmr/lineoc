@@ -61,7 +61,7 @@ if (!is_null($events['events'])) {
             $temp = json_decode($result);
             curl_close($ch);
 
-            $messages = $temp;
+            $messages = $temp['name'];
              $url = 'https://api.line.me/v2/bot/message/push';
                     $data = [
                         'to' => $replyToken,
