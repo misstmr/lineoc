@@ -41,14 +41,51 @@ if (!is_null($events['events'])) {
 
 
 
+            $login = explode('.', $event['message']['text']);
+            $num = count($login);
+            if ($num >= 1) {
+
+            if ($login[0] == 'A' || $login[0] == 'a') {
+                 $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/put_line_uid';
+            $ch = curl_init($url);
+            $data = array(
+                'uid' => $replyToken,
+                'username' => $login[1],
+                'password' => $login[2]
+            );
+            $payload = json_encode($data);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
+            curl_setopt($ch, CURLOPT_HTTPHEADER, array('Content-Type:application/json'));
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            $result = curl_exec($ch);
+            $temp = json_decode($result);
+            curl_close($ch);
+
+            $messages = $temp;
+             $url = 'https://api.line.me/v2/bot/message/push';
+                    $data = [
+                        'to' => $replyToken,
+                        'messages' => [$messages],
+                    ];
+                    $post = json_encode($data);
+                    $headers = array('Content-Type: application/json', 'Authorization: Bearer ' . $access_token);
+
+                    $ch = curl_init($url);
+                    curl_setopt($ch, CURLOPT_CUSTOMREQUEST, "POST");
+                    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+                    curl_setopt($ch, CURLOPT_POSTFIELDS, $post);
+                    curl_setopt($ch, CURLOPT_HTTPHEADER, $headers);
+                    curl_setopt($ch, CURLOPT_FOLLOWLOCATION, 1);
+                    $result = curl_exec($ch);
+                    curl_close($ch);
+
+                    echo $result . "\r\n";
 
 
-            if ($event['message']['text'] == 'uid' || $event['message']['text'] == 'Uid') {
-                $msg = [
-                    'type' => 'text',
-                    'text' => $replyToken
-                ];
+
+
             }
+        }
 
             $kpi = $event['message']['text'];
             $num = count($kpi);
