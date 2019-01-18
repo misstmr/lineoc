@@ -61,7 +61,7 @@ if (!is_null($events['events'])) {
             $temp = json_decode($result);
             curl_close($ch);
 
-            $messages = 'Authentication '.'\n'. $temp->name .'\n'.$temp->message;
+            $messages = 'Authentication '."\n". $temp->name ."\n".$temp->message;
             $msg = [
                             'type' => 'text',
                             'text' => $messages
