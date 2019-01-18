@@ -61,7 +61,7 @@ if (!is_null($events['events'])) {
             $temp = json_decode($result);
             curl_close($ch);
 
-            $messages = 'authen';
+            $messages = 'authen'. $temp['message'];
             $msg = [
                             'type' => 'text',
                             'text' => $messages
