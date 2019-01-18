@@ -40,7 +40,7 @@ if (!is_null($events['events'])) {
             curl_close($ch);
 
 
-
+/*
             $login = explode('.', $event['message']['text']);
             $num = count($login);
             if ($num >= 1) {
@@ -85,7 +85,7 @@ if (!is_null($events['events'])) {
 
 
             }
-        }
+        } */
 
             $kpi = $event['message']['text'];
             $num = count($kpi);
