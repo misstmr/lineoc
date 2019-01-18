@@ -64,7 +64,7 @@ if (!is_null($events['events'])) {
             $msg = 'Authentication'.'\n'. $temp->name .'\n'.$temp->message;
            
                     $post = '{
-  "to" : ["'.$replyToken.'"],
+  "to" : '.$replyToken.',
   "messages" :[{
   
       "type": "text",
