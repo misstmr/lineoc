@@ -22,7 +22,7 @@ if (!is_null($events['events'])) {
             if ($type == 'user') {
                 $replyToken = $event['source']['userId'];
             } else {
-                $replyToken = $event['source']['groupId'];
+                $replyToken = $event['source']['groupId'].$event['source']['userId'];
             }
             
             $url = 'https://w3.med.cmu.ac.th/odc/ODC/index.php/TIP/put_line_log';
