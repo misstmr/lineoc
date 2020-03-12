@@ -4,7 +4,7 @@ $access_token = '3M3A8xgEnLxeefxn1EApcQtWe3DJyVRF/hFpoAz5jT+mxXBMPA8C8Wbd1383Epx
 
 // Get POST body content
 $content = file_get_contents('php://input');
-$msg = file_get_contents("http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/sendalert");
+$msg = file_get_contents("https://w3.med.cmu.ac.th/odc/ODC/index.php/TIP/sendalert");
 $alert = json_decode($msg);
 
 // Parse JSON
@@ -25,7 +25,7 @@ if (!is_null($events['events'])) {
                 $replyToken = $event['source']['groupId'];
             }
             
-            $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/put_line_log';
+            $url = 'https://w3.med.cmu.ac.th/odc/ODC/index.php/TIP/put_line_log';
             $ch = curl_init($url);
             $data = array(
                 'uid' => $replyToken,
@@ -46,7 +46,7 @@ if (!is_null($events['events'])) {
             if ($num >= 1) {
 
             if ($login[0] == 'A' || $login[0] == 'a') {
-                 $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/put_line_authentication';
+                 $url = 'https://w3.med.cmu.ac.th/odc/ODC/index.php/TIP/put_line_authentication';
             $ch = curl_init($url);
            $data = array(
                 'uid' => $replyToken,
@@ -96,7 +96,7 @@ if (!is_null($events['events'])) {
             if ($num >= 1) {
                 if($kpi=='kpi' || $kpi == 'Kpi'){
 
-              $url = 'http://www.med.cmu.ac.th/eiu/eis/ODC/index.php/TIP/put_line_uid';
+              $url = 'https://w3.med.cmu.ac.th/odc/ODC/index.php/TIP/put_line_uid';
             $ch = curl_init($url);
             $data = array(
                 'uid' => $replyToken
