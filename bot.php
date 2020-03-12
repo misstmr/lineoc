@@ -22,14 +22,15 @@ if (!is_null($events['events'])) {
             if ($type == 'user') {
                 $replyToken = $event['source']['userId'];
             } else {
-                $replyToken = $event['source']['groupId'].$event['source']['userId'];
+                $replyToken = $event['source']['groupId'];
             }
             
             $url = 'https://w3.med.cmu.ac.th/odc/ODC/index.php/TIP/put_line_log';
             $ch = curl_init($url);
             $data = array(
                 'uid' => $replyToken,
-                'log' => $event['message']['text']
+                'log' => $event['message']['text'],
+                'member_userId' => $event['source']['userId']
             );
             $payload = json_encode($data);
             curl_setopt($ch, CURLOPT_POSTFIELDS, $payload);
